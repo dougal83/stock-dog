@@ -99,4 +99,5 @@ angular.module('stockDogApp')
     $scope.$watch('watchlists.length', function () {
       reset();
     });
+
   });

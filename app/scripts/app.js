@@ -16,18 +16,20 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'mgcrea.ngStrap',
+    'ui.bootstrap',
     'googlechart'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl'
+        controller: 'DashboardCtrl',
+        controllerAs: 'dashboard'
       })
       .when('/watchlist/:listId', {
         templateUrl: 'views/watchlist.html',
-        controller: 'WatchlistCtrl'
+        controller: 'WatchlistCtrl',
+        controllerAs: 'watchlist'
       })
       .otherwise({
         redirectTo: '/dashboard'

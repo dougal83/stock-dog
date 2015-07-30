@@ -2,10 +2,10 @@
 
 angular.module('stockDogApp')
   .controller('MainCtrl', function ($scope, $location, WatchlistService) {
-    // Populate watchlists for dynamic nav links
+    // [1] Populate watchlists for dynamic nav links
     $scope.watchlists = WatchlistService.query();
 
-    // Using the $location.path() function as a $watch expression
+    // [2] Using the $location.path() function as a $watch expression
     $scope.$watch(function () {
       return $location.path();
     }, function (path) {
@@ -15,4 +15,7 @@ angular.module('stockDogApp')
         $scope.activeView = 'dashboard';
       }
     });
+  })
+  .run(function ($rootScope) {
+    $rootScope._ = window._;
   });

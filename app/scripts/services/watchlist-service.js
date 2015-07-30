@@ -50,8 +50,10 @@ angular.module('stockDogApp')
     // Helper: Load watchlists from localStorage
     var loadModel = function () {
       var model = {
-        watchlists: localStorage['StockDog.watchlists'] ? JSON.parse(localStorage['StockDog.watchlists']) : [],
-        nextId: localStorage['StockDog.nextId'] ? parseInt(localStorage['StockDog.nextId']) : 0
+        watchlists: localStorage['StockDog.watchlists'] ?
+          JSON.parse(localStorage['StockDog.watchlists']) : [],
+        nextId: localStorage['StockDog.nextId'] ?
+          parseInt(localStorage['StockDog.nextId']) : 0
       };
       _.each(model.watchlists, function (watchlist) {
         _.extend(watchlist, WatchlistModel);

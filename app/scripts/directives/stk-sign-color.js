@@ -5,7 +5,7 @@ angular.module('stockDogApp')
     return {
       restrict: 'A',
       link: function ($scope, $element, $attrs) {
-        $scope.$watch($attrs.stkSignColor, function (newVal) {
+        $attrs.$observe('stkSignColor', function (newVal) {
           var newSign = parseFloat(newVal);
           if (newSign > 0) {
             $element[0].style.color = 'Green';

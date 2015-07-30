@@ -7,7 +7,8 @@ angular.module('stockDogApp')
       link: function ($scope, $element, $attrs) {
         var oldVal = null;
         $attrs.$observe('stkSignFade', function (newVal) {
-          if (oldVal && oldVal == newVal) { return; }
+          // changed from == to === as jshint was moaning
+          if (oldVal && oldVal === newVal) { return; }
 
           var oldPrice = parseFloat(oldVal);
           var newPrice = parseFloat(newVal);

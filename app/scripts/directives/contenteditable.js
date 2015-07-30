@@ -10,6 +10,11 @@ angular.module('stockDogApp')
       link: function($scope, $element, $attrs, ngModelCtrl) {
         if(!ngModelCtrl) { return; } // do nothing if no ng-model
 
+        // Specify how UI should be updated
+        ngModelCtrl.$render = function() {
+          $element.html($sce.getTrustedHtml(ngModelCtrl.$viewValue || ''));
+        };
+
         // Read HTML value, then write data to the model or reset the view
         var read = function () {
           var value = $element.html();
@@ -18,11 +23,6 @@ angular.module('stockDogApp')
           } else {
             ngModelCtrl.$setViewValue(value);
           }
-        };
-
-        // Specify how UI should be updated
-        ngModelCtrl.$render = function() {
-          $element.html($sce.getTrustedHtml(ngModelCtrl.$viewValue || ''));
         };
 
         // Add custom parser based input type (only `number` supported)

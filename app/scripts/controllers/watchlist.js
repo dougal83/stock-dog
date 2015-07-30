@@ -12,25 +12,32 @@ angular.module('stockDogApp')
     // Initializations
     $scope.companies = CompanyService.query();
     $scope.watchlist = WatchlistService.query($routeParams.listId);
+    // *KLUDGE* : make reference to avoid error TODO: revisit
+    $scope.watchlistRef = $scope.watchlist;
+
     $scope.stocks = $scope.watchlist.stocks;
     $scope.newStock = {};
-    var addStockModal = $modal({
-      scope: $scope,
-      template: 'views/templates/addstock-modal.html',
-      show: false
-    });
 
-    $scope.showStockModal = function () {
-      addStockModal.$promise.then(addStockModal.show);
+    $scope.openStockModal = function () {
+      $scope.modalInstance = $modal.open({
+        templateUrl: 'views/templates/addstock-modal.html',
+        scope: $scope
+      });
     };
 
-    $scope.addStock = function () {
-      $scope.watchlist.addStock({
+    $scope.cancelModal = function () {
+      $scope.modalInstance.dismiss('cancel');
+    };
+
+    $scope.addNewStock = function () {
+      // *KLUDGE* : use reference to avoid error TODO: revisit
+      $scope.watchlistRef.addStock({
         listId: $routeParams.listId,
         company: $scope.newStock.company,
         shares: $scope.newStock.shares
       });
-      addStockModal.hide();
+      $scope.modalInstance.close();
       $scope.newStock = {};
     };
+
   });

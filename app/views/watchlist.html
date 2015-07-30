@@ -12,7 +12,7 @@
         {{watchlist.description}}
         <button type="button"
           class="btn btn-success btn-xs pull-right"
-          ng-click="showStockModal()">
+          ng-click="openStockModal()">
       <span class="glyphicon glyphicon-plus"></span>
     </button>
       </div>
@@ -22,7 +22,8 @@
           <p>Looks like you haven't added any stocks to this watchlist yet!</p>
           <p>Do so now by clicking the <span class="glyphicon glyphicon-plus"></span> located above.</p>
         </div>
-        <stk-stock-table ng-show="stocks.length" watchlist="watchlist">
+        <!-- loop over all stocks and display company symbols -->
+        <stk-stock-table ng-show="stocks.length" watchlist="watchlistRef">
       </div>
     </div>
   </div>

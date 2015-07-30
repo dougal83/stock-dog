@@ -10,12 +10,6 @@ angular.module('stockDogApp')
         isLast: '='
       },
       link: function ($scope, $element, $attrs, stockTableCtrl) {
-        // Create tooltip for stock-row
-        $element.tooltip({
-          placement: 'left',
-          title: $scope.stock.company.name
-        });
-
         // Add this row to the TableCtrl
         stockTableCtrl.addRow($scope);
 
@@ -35,8 +29,10 @@ angular.module('stockDogApp')
 
         // Watch for changes in shares and recalculate fields
         $scope.$watch('stock.shares', function () {
-          $scope.stock.marketValue = $scope.stock.shares * $scope.stock.lastPrice;
-          $scope.stock.dayChange = $scope.stock.shares * parseFloat($scope.stock.change);
+          $scope.stock.marketValue = $scope.stock.shares *
+            $scope.stock.lastPrice;
+          $scope.stock.dayChange = $scope.stock.shares *
+            parseFloat($scope.stock.change);
           $scope.stock.save();
         });
       }
