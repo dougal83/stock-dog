@@ -12,8 +12,6 @@ angular.module('stockDogApp')
     // Initializations
     $scope.companies = CompanyService.query();
     $scope.watchlist = WatchlistService.query($routeParams.listId);
-    // *KLUDGE* : make reference to avoid error TODO: revisit
-    $scope.watchlistRef = $scope.watchlist;
 
     $scope.stocks = $scope.watchlist.stocks;
     $scope.newStock = {};
@@ -30,8 +28,7 @@ angular.module('stockDogApp')
     };
 
     $scope.addNewStock = function () {
-      // *KLUDGE* : use reference to avoid error TODO: revisit
-      $scope.watchlistRef.addStock({
+      $scope.watchlist.addStock({
         listId: $routeParams.listId,
         company: $scope.newStock.company,
         shares: $scope.newStock.shares
@@ -39,5 +36,5 @@ angular.module('stockDogApp')
       $scope.modalInstance.close();
       $scope.newStock = {};
     };
-
+    
   });

@@ -28,8 +28,8 @@ angular
       })
       .when('/watchlist/:listId', {
         templateUrl: 'views/watchlist.html',
-        controller: 'WatchlistCtrl',
-        controllerAs: 'watchlist'
+        controller: 'WatchlistCtrl'//,
+        //controllerAs: 'watchlist'
       })
       .otherwise({
         redirectTo: '/dashboard'
